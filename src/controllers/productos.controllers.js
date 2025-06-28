@@ -12,8 +12,10 @@ const obtenerTodosLosProductos = (req, res) => {
 };
 
 const obtenerUnProducto = (req, res) => {
-  const { producto, statusCode } = obtenerUnProductoPorIdArray(req.params.id);
-  res.status(statusCode).json({ producto });
+  const { producto, msg, statusCode } = obtenerUnProductoPorIdArray(
+    req.params.id
+  );
+  res.status(statusCode).json(producto ? { producto } : { msg });
 };
 
 const crearProducto = (req, res) => {
