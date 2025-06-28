@@ -1,11 +1,13 @@
-const http = require("http");
+const express = require("express");
+const app = express();
 const port = 3001;
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("content-type", "text-plain");
-  res.end("Hola desde el back");
-});
 
-server.listen(port, () => {
-  console.log("Servidor en el puerto: ", port);
+//middlewares
+app.use(express.json());
+
+//rutas
+app.use("/productos", require("./routes/productos.routes"));
+
+app.listen(port, () => {
+  console.log("Servidor prendido en puerto: ", port);
 });
