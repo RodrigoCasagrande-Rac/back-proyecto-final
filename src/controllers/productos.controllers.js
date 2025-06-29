@@ -28,7 +28,7 @@ const actualizarProducto = (req, res) => {
 
 const eliminarProducto = (req, res) => {
   const { msg, statusCode } = eliminarProductoArray(req.params.id);
-  res.status(statusCode).json({ mensaje: msg });
+  res.status(statusCode).json({ msg });
 };
 
 module.exports = {
