@@ -1,6 +1,6 @@
-import Cancha from "../models/Cancha.js";
+import Cancha from "../model/canchas.js";
 
-export const obtenerTodasLasCanchas = async () => {
+const obtenerTodasLasCanchas = async () => {
   try {
     const canchas = await Cancha.find();
     return { data: canchas, statusCode: 200 };
@@ -9,7 +9,7 @@ export const obtenerTodasLasCanchas = async () => {
   }
 };
 
-export const crearNuevaCancha = async ({ descripcion, precio, estado }) => {
+const crearNuevaCancha = async ({ descripcion, precio, estado }) => {
   if (!descripcion || !precio || !estado) {
     return { data: { message: "Faltan datos" }, statusCode: 400 };
   }
@@ -23,10 +23,7 @@ export const crearNuevaCancha = async ({ descripcion, precio, estado }) => {
   }
 };
 
-export const actualizarCanchaPorId = async (
-  id,
-  { descripcion, precio, estado }
-) => {
+const actualizarCanchaPorId = async (id, { descripcion, precio, estado }) => {
   if (!descripcion || !precio || !estado) {
     return { data: { message: "Faltan datos" }, statusCode: 400 };
   }
@@ -52,7 +49,7 @@ export const actualizarCanchaPorId = async (
   }
 };
 
-export const eliminarCanchaPorId = async (id) => {
+const eliminarCanchaPorId = async (id) => {
   try {
     const cancha = await Cancha.findById(id);
     if (!cancha) {
@@ -70,4 +67,12 @@ export const eliminarCanchaPorId = async (id) => {
       statusCode: 500,
     };
   }
+};
+
+module.exports = {
+  obtenerTodasLasCanchas,
+  crearNuevaCancha,
+  actualizarCanchaPorId,
+  eliminarCanchaPorId,
+  Cancha,
 };
