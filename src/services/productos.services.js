@@ -16,6 +16,12 @@ const obtenerTodosLosProductosArray = () => {
 
 const obtenerUnProductoPorIdArray = (idProducto) => {
   const producto = productos.find((prod) => prod.id === Number(idProducto));
+  if (!producto) {
+    return {
+      mensaje: "Producto no encontrado",
+      statusCode: 404,
+    };
+  }
   return {
     producto,
     statusCode: 200,
@@ -42,6 +48,12 @@ const actualizarProductoArray = (idProducto, body) => {
   const productoIndex = productos.findIndex(
     (prod) => prod.id === Number(idProducto)
   );
+  if (productoIndex === -1) {
+    return {
+      mensaje: "Producto no encontrado",
+      statusCode: 404,
+    };
+  }
   productos[productoIndex] = { id: Number(idProducto), ...body };
   return {
     mensaje: "Producto actualizado correctamente",
